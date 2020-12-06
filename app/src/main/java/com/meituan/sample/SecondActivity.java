@@ -3,8 +3,6 @@ package com.meituan.sample;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +12,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.meituan.robust.patch.RobustModify;
 import com.meituan.robust.patch.annotaion.Add;
 import com.meituan.robust.patch.annotaion.Modify;
 
@@ -24,6 +26,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     protected static String name = "SecondActivity";
     private ListView listView;
     private String[] multiArr = {"列表1", "列表2", "列表3", "列表4"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +36,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         TextView textView = (TextView) findViewById(R.id.secondtext);
         textView.setOnClickListener(v -> {
 //                    RobustModify.modify();
-                    Log.d("robust", " onclick  in Listener");
+                    Log.d("robust", " onclick  in Listener2");
                 }
         );
         //change text on the  SecondActivity
@@ -46,16 +49,17 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 //    @Modify
-    public String getTextInfo() {
-        getArray();
+    private String getTextInfo() {
+//        getArray();
+//        Log.d("robust", "getTextInfo: ");
         return "error occur " ;
 //        return "error fixed";
     }
 
-    @Add
-    public String[] getArray() {
-       return new String[]{"hello","world"};
-    }
+//    @Add
+//    public String[] getArray() {
+//       return new String[]{"hello","world"};
+//    }
 
     @Override
     public View onCreateView(String name, Context context, AttributeSet attrs) {

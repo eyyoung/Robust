@@ -5,6 +5,7 @@ import org.apache.commons.io.IOUtils
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.file.FileCollection
+import org.gradle.api.internal.file.FileCollectionBackFileTree
 
 import java.security.MessageDigest
 import java.util.zip.ZipEntry
@@ -40,7 +41,7 @@ class RobustApkHashAction implements Action<Project> {
                             partFiles.add(resourceFiles.getFiles())
                         } catch (Exception e){
                             //gradle 5.4+ & gradle tools 3.5.0+ 适配
-                            Object resFiles = packageTask.resourceFiles
+                            FileCollectionBackFileTree resFiles = packageTask.resourceFiles.getAsFileTree()
                             for (File file : resFiles){
                                 partFiles.add(file)
                             }
